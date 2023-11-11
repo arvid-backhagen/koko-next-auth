@@ -5,6 +5,9 @@ import GitHub from "next-auth/providers/github";
 export const nextAuthConfig = {
   // Not providing any secret or NEXTAUTH_SECRET will throw an error in production.
   secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+  },
   providers: [
     GitHub({
       profile(profile) {
