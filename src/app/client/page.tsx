@@ -5,7 +5,7 @@ import React from "react";
 const ClientPage = () => {
   const session = useSession();
   console.log("Frontend session object:", session);
-  return <div>ClientPage</div>;
+  return <h1>ClientPage</h1>;
 };
 
 export default ClientPage;

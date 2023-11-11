@@ -3,11 +3,11 @@ import { JWT } from "next-auth/jwt";
 import GitHub from "next-auth/providers/github";
 
 export const nextAuthConfig = {
+  // Not providing any secret or NEXTAUTH_SECRET will throw an error in production.
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GitHub({
       profile(profile) {
-        console.log("Github Profile:", profile);
         // Enriching the returned value of what GitHub returns when we authenticate
         // Ideally you would check your database for registered users here to apply the role they have there
         const role =
@@ -28,13 +28,10 @@ export const nextAuthConfig = {
       session.user.image = token.avatar_url as string;
       return session;
     },
-    async jwt({ token, user, account, profile }) {
+    async jwt({ token, user }) {
       if (typeof user !== "undefined") {
         // user has just signed in so the user object is populated
-        console.log(
-          "User just signed in, so populating token with user data: ",
-          user
-        );
+
         return { ...user } as JWT;
       }
       return token;

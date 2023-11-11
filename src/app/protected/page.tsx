@@ -19,7 +19,7 @@ export default function ProtectedPage() {
         {dataFromServer?.protectedContent ? (
           Object.keys(dataFromServer.protectedContent).map((key) => {
             return (
-              <p>
+              <p key={key}>
                 {key} : {dataFromServer.protectedContent[key]}
               </p>
             );
